@@ -281,11 +281,11 @@ export const IssueDetailModal: React.FC<IssueDetailModalProps> = ({
           {/* ========================================================================= */}
           {/* THE AI MAGIC CARD */}
           {/* ========================================================================= */}
-          <section className="relative rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-purple-500/10 border-2 border-orange-400/40 shadow-lg">
+          <section className="relative rounded-2xl border border-stone-200 bg-stone-50 p-5 shadow-sm sm:p-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 text-white flex items-center justify-center shadow-md">
-                  <Sparkles className="w-5 h-5 animate-spin-slow" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100 text-orange-700">
+                  <Sparkles className="h-5 w-5" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -440,12 +440,12 @@ export const IssueDetailModal: React.FC<IssueDetailModalProps> = ({
               </div>
             )}
 
-            <div className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4">
+            <div className="mt-4 rounded-2xl border border-emerald-200 bg-white p-4 shadow-xs">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <h3 className="text-sm font-extrabold text-stone-900">Local Gemma 4 summary</h3>
                   <p className="mt-1 text-xs text-stone-600">
-                    Uses Ollama on this machine with <code>gemma4:e2b</code>. Start Ollama and download the model first.
+                    Uses Ollama on this machine with <code>gemma4:e2b</code>. Install Ollama, download the model, and keep Ollama running.
                   </p>
                 </div>
                 <button

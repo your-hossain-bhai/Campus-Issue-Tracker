@@ -89,13 +89,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <TrendingIssuesWidget issues={issues} onSelectIssue={onSelectIssue} />
 
       {/* 3. AI Engine Info Box */}
-      <div className="bg-gradient-to-br from-purple-900 via-indigo-950 to-stone-900 rounded-2xl p-4 text-white shadow-sm border border-purple-800/40 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-28 h-28 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+      <div className="relative overflow-hidden rounded-2xl border border-stone-800 bg-stone-900 p-4 text-white shadow-sm">
         <div className="flex items-center gap-2 mb-2">
-          <div className="p-1.5 rounded-lg bg-amber-400/20 text-amber-300">
+          <div className="rounded-lg bg-white/10 p-1.5 text-emerald-300">
             <Sparkles className="w-4 h-4" />
           </div>
-          <span className="text-xs font-bold uppercase tracking-wider text-amber-300">
+          <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
             AI Issue Summaries
           </span>
         </div>

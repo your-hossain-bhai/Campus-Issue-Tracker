@@ -429,15 +429,40 @@ export function CampusPulseHub({
     <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-7">
       {section === 'home' && (
         <div className="space-y-7">
-          <section className="overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-800 px-6 py-9 text-white shadow-lg sm:px-10 sm:py-12">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-emerald-200">Campus life, in one place</p>
-            <h1 className="max-w-2xl text-3xl font-extrabold tracking-tight sm:text-5xl">Find your people. Make campus better.</h1>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-emerald-50 sm:text-base">Discover student events and clubs, keep up with opportunities, and follow campus issues from report to resolution.</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button onClick={() => onNavigate('events')} className="rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-emerald-950 hover:bg-emerald-50">Explore events</button>
-              <button onClick={() => onNavigate('issues')} className="rounded-xl border border-white/40 px-4 py-2.5 text-sm font-bold text-white hover:bg-white/10">Browse campus issues</button>
+          <section className="relative isolate overflow-hidden rounded-3xl bg-stone-900 px-6 py-8 text-white shadow-sm sm:px-10 sm:py-10 lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-10">
+            <div className="pointer-events-none absolute -right-20 -top-32 -z-10 h-96 w-96 rounded-full border border-white/10" aria-hidden="true" />
+            <div className="pointer-events-none absolute -right-5 -top-16 -z-10 h-64 w-64 rounded-full border border-white/10" aria-hidden="true" />
+            <div className="relative">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-emerald-300">Campus life, in one place</p>
+              <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">Your Campus. Your Community.</h1>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-200 sm:text-base">Discover campus events, connect with student clubs, and help make your university a better place.</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <button onClick={() => onNavigate('events')} className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-stone-900 transition-colors hover:bg-stone-100 focus-visible:outline-white">
+                  Explore Events <ArrowRight className="h-4 w-4" />
+                </button>
+                <button onClick={onReportIssue} className="rounded-xl border border-white/30 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-white/10">Report an Issue</button>
+              </div>
+              <p className="mt-5 text-[11px] text-slate-300">Demo listings are illustrative and are not verified university information.</p>
             </div>
-            <p className="mt-5 text-[11px] text-emerald-200">Demo content is illustrative and is not verified university information.</p>
+            {announcementEvents[0] && (
+              <button
+                type="button"
+                onClick={() => setActiveEvent(announcementEvents[0])}
+                className="mt-8 w-full rounded-2xl border border-white/15 bg-white p-4 text-left text-stone-900 shadow-lg transition-transform hover:-translate-y-0.5 focus-visible:outline-white lg:mt-0"
+                aria-label={`View featured event: ${announcementEvents[0].title}`}
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-stone-500"><CalendarDays className="h-4 w-4 text-orange-600" /> Coming up on campus</span>
+                  <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-800">{announcementEvents[0].category}</span>
+                </div>
+                <h2 className="mt-5 text-xl font-extrabold leading-snug text-stone-900">{announcementEvents[0].title}</h2>
+                <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-stone-600">{announcementEvents[0].description}</p>
+                <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-4 text-xs font-semibold text-stone-600">
+                  <span className="inline-flex items-center gap-1.5"><Clock3 className="h-4 w-4" /> {formatDate(announcementEvents[0].startDate)}</span>
+                  <span className="inline-flex items-center gap-1 text-orange-700">Event details <ArrowRight className="h-3.5 w-3.5" /></span>
+                </div>
+              </button>
+            )}
           </section>
 
           <section>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Megaphone,
+  AudioLines,
   Search,
   Plus,
   Flame,
@@ -44,23 +44,23 @@ export const Header: React.FC<HeaderProps> = ({
   resolvedCount,
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-xs">
+    <header className="sticky top-0 z-40 border-b border-stone-200 bg-white shadow-xs">
       {/* Top Banner: Clickable About Bar giving overall idea about the platform */}
-      <div className="bg-stone-900 text-stone-200 text-xs py-2 px-4 border-b border-stone-800">
+      <div className="bg-stone-900 text-white text-xs py-2 px-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="min-w-0 truncate font-medium text-stone-300">
-              CampusPulse • Events, clubs, opportunities & campus issues
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span className="min-w-0 truncate font-medium text-slate-200">
+              Your campus community, in one place
             </span>
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={onOpenAboutModal}
-              className="inline-flex items-center gap-1.5 bg-stone-800 hover:bg-stone-700 active:bg-stone-600 text-stone-200 hover:text-white px-2.5 py-1 rounded-full text-[11px] font-semibold border border-stone-700 transition-colors cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white transition-colors hover:bg-white/15"
               aria-label="Open About Platform section"
             >
-              <Info className="w-3.5 h-3.5 text-orange-400" />
+              <Info className="w-3.5 h-3.5 text-emerald-300" />
               <span className="hidden sm:inline">About CampusPulse</span>
             </button>
           </div>
@@ -68,12 +68,12 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Main Reddit-style Navbar */}
-      <div className="max-w-6xl mx-auto px-4 py-3">
+      <div className="mx-auto max-w-6xl px-4 py-3">
         <div className="flex items-center justify-between gap-3 md:gap-6">
           {/* Brand */}
           <div className="flex items-center gap-2.5 shrink-0">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white shadow-md shadow-orange-500/20">
-              <Megaphone className="w-5 h-5 -rotate-12" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-stone-900 text-white">
+              <AudioLines className="h-5 w-5" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
@@ -81,8 +81,8 @@ export const Header: React.FC<HeaderProps> = ({
                   Campus<span className="text-orange-600">Pulse</span>
                 </span>
               </div>
-              <p className="text-[11px] text-stone-500 hidden sm:block">
-                One platform for campus life
+              <p className="hidden text-[11px] text-stone-500 sm:block">
+                A better connected campus
               </p>
             </div>
           </div>
@@ -97,7 +97,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="Search campus issues, demands, or keywords (e.g. bus, library, wifi)..."
                 aria-label="Search issues"
-                className="w-full rounded-full border border-stone-200 bg-stone-100 py-2 pl-10 pr-9 text-sm text-stone-900 outline-hidden transition-all placeholder:text-stone-400 hover:bg-stone-50 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500/20"
+                className="form-control w-full rounded-full bg-stone-50 py-2 pl-10 pr-9 text-sm outline-hidden transition-all hover:bg-white"
               />
               {searchQuery && (
                 <button
@@ -141,7 +141,7 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => onSectionChange(section)}
               className={`shrink-0 rounded-lg px-3 py-2 text-xs font-semibold transition-colors ${
                 activeSection === section
-                  ? 'bg-emerald-50 text-emerald-900 ring-1 ring-emerald-200'
+                  ? 'bg-stone-900 text-white'
                   : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900'
               }`}
             >
@@ -152,7 +152,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Sub-bar: Status and Sort Filters */}
         {activeSection === 'issues' && (
-        <div className="mt-2 pt-2.5 border-t border-stone-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-2 border-t border-stone-100 pt-2.5 text-xs">
           {/* Status Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
             <button

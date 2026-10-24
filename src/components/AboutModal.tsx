@@ -37,7 +37,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="p-5 sm:px-7 sm:py-5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white flex items-center justify-between gap-3 shrink-0">
+        <div className="flex shrink-0 items-center justify-between gap-3 bg-stone-900 p-5 text-white sm:px-7 sm:py-5">
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-xs flex items-center justify-center text-white shadow-inner">
               <Megaphone className="w-6 h-6 -rotate-12" />
@@ -46,7 +46,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               <h2 id="about-modal-title" className="text-xl font-extrabold tracking-tight">
                 About CampusPulse
               </h2>
-              <p className="text-xs text-orange-100">
+              <p className="text-xs text-slate-300">
                 Events, clubs, opportunities & campus issues
               </p>
             </div>

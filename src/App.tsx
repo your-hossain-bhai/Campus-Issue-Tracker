@@ -415,20 +415,22 @@ export default function App() {
       </main>}
 
       {/* Footer */}
-      <footer className="mt-12 py-6 border-t border-stone-200 bg-white text-xs text-stone-500">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <div>
-            <span className="font-bold text-stone-800">CampusPulse</span> • One platform for campus life
-          </div>
-          <div className="flex items-center gap-3 text-stone-400">
+      <footer className="mt-auto border-t border-stone-200 bg-white py-6 text-xs text-stone-500">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+          <p className="font-medium text-stone-600">
+            © {new Date().getFullYear()} CampusPulse. Developed by Muhammad Hossain. All rights reserved.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
+            <button onClick={() => setSection('events')} className="font-medium transition-colors hover:text-stone-900">Events</button>
+            <button onClick={() => setSection('clubs')} className="font-medium transition-colors hover:text-stone-900">Clubs</button>
+            <button onClick={() => setSection('issues')} className="font-medium transition-colors hover:text-stone-900">Campus Issues</button>
             <button
               onClick={() => setIsAboutModalOpen(true)}
-              className="hover:text-stone-700 transition-colors font-medium cursor-pointer"
+              className="font-medium transition-colors hover:text-stone-900"
             >
-              About Platform
+              About
             </button>
-            <span>•</span>
-            <span className="text-orange-600 font-semibold flex items-center gap-1">
+            <span className="inline-flex items-center gap-1 font-semibold text-orange-700">
               <Sparkles className="w-3.5 h-3.5" /> AI Issue Summaries
             </span>
           </div>
