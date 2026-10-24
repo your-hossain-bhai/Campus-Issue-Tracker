@@ -46,6 +46,20 @@ AI requests are sent to a server-side endpoint; never put an API key in a `VITE_
 
 The server uses the existing Google GenAI SDK and the configured model identifier `gemini-3.8-flash`. The model is not silently changed by the client. AI provider errors are logged server-side and fall back to the existing demo summary behavior.
 
+## Local Gemma 4 issue summaries (Hack Day demo)
+
+The issue detail view has a separate **Summarize with Gemma** action. It uses Ollama's local `http://localhost:11434/api/generate` API with `model: "gemma4:e2b"` and `stream: false`; this is independent of the existing Gemini/Bangla summary. No Gemini fallback is used or labeled as Gemma.
+
+To demonstrate a real Gemma-generated summary on your development machine:
+
+1. Install and start [Ollama](https://ollama.com/download).
+2. Download the model in a terminal with `ollama pull gemma4:e2b`.
+3. Confirm Ollama is running and the model is available with `ollama list`.
+4. Start CampusPulse locally with `npm run dev` and open a campus issue's details.
+5. Click **Summarize with Gemma** and wait for the model output.
+
+CampusPulse's local Express server calls Ollama on the same machine. Laptop-local Ollama inference does **not** automatically work from the public Vercel deployment: the Vercel function cannot access `localhost` on your laptop. On Vercel the button explains this limitation; making it work there requires a separately hosted, secured Ollama-compatible inference service, not a client-side key or exposed local port.
+
 ## Vercel deployment
 
 The Vite frontend builds to `dist/`; the `/api/campus-summary` serverless function is in `api/campus-summary.ts` and shares its server-only implementation with the local Express route.
