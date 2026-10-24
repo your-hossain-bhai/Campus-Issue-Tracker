@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   Sparkles,
   PlusCircle,
+  Users,
 } from 'lucide-react';
 import { CampusIssue, IssueCategory } from '../types';
 import { TrendingIssuesWidget } from './TrendingIssuesWidget';
@@ -27,7 +28,13 @@ const CATEGORIES: { label: 'ALL' | IssueCategory; name: string; icon: React.Reac
   { label: 'Library', name: 'Library & Reading Room', icon: <BookOpen className="w-4 h-4" />, color: 'text-purple-600' },
   { label: 'Cafeteria', name: 'Cafeteria & Water', icon: <Coffee className="w-4 h-4" />, color: 'text-amber-600' },
   { label: 'Facilities', name: 'Lab, Wi-Fi & Electricity', icon: <Wrench className="w-4 h-4" />, color: 'text-emerald-600' },
+  { label: 'Facilities & maintenance', name: 'Facilities & Maintenance', icon: <Wrench className="w-4 h-4" />, color: 'text-emerald-600' },
+  { label: 'Internet & technology', name: 'Internet & Technology', icon: <Wrench className="w-4 h-4" />, color: 'text-blue-600' },
+  { label: 'Academic services', name: 'Academic Services', icon: <GraduationCap className="w-4 h-4" />, color: 'text-indigo-600' },
+  { label: 'Safety & accessibility', name: 'Safety & Accessibility', icon: <ShieldCheck className="w-4 h-4" />, color: 'text-rose-600' },
+  { label: 'Student services', name: 'Student Services', icon: <Users className="w-4 h-4" />, color: 'text-violet-600' },
   { label: 'Administration', name: 'Fees & Registration', icon: <FileText className="w-4 h-4" />, color: 'text-indigo-600' },
+  { label: 'Other campus concerns', name: 'Other Campus Concerns', icon: <FileText className="w-4 h-4" />, color: 'text-stone-600' },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -89,17 +96,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <Sparkles className="w-4 h-4" />
           </div>
           <span className="text-xs font-bold uppercase tracking-wider text-amber-300">
-            AI Executive Summary
+            AI Issue Summaries
           </span>
         </div>
         <p className="text-xs text-stone-300 leading-relaxed">
-          Our intelligent AI engine reads grievance descriptions and photo evidence to extract concise 1-sentence Bangla briefs (Main Demand, Status, and Next Steps) for student representatives.
+          When a server-side API key is configured, summaries use Google GenAI. A clearly labeled demo fallback is used otherwise.
         </p>
         <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-stone-400">
-          <span>JSON Schema: Validated</span>
-          <span className="text-emerald-400 flex items-center gap-1 font-mono">
-            ● Active
-          </span>
+          <span>Server-side API key optional</span>
+          <span className="text-emerald-400 flex items-center gap-1 font-mono">Demo fallback ready</span>
         </div>
       </div>
 
@@ -117,7 +122,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </ol>
         <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-400">
           <span>Campus Community Board</span>
-          <span className="font-semibold text-stone-700">Verified Hub</span>
+          <span className="font-semibold text-stone-700">Demo community board</span>
         </div>
       </div>
     </aside>

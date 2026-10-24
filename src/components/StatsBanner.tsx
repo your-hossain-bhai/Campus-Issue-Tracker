@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, Clock, ThumbsUp, Sparkles, Building2 } from 'lucide-react';
+import { CheckCircle2, Clock, ThumbsUp, Building2 } from 'lucide-react';
 import { CampusIssue } from '../types';
 
 interface StatsBannerProps {
@@ -11,8 +11,6 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ issues }) => {
   const resolved = issues.filter((i) => i.status === 'Resolved').length;
   const pending = issues.filter((i) => i.status === 'Pending').length;
   const totalUpvotes = issues.reduce((acc, curr) => acc + curr.upvotes, 0);
-  const aiSummarized = issues.filter((i) => Boolean(i.aiSummary)).length;
-
   return (
     <div className="bg-white rounded-2xl p-4 border border-stone-200/80 shadow-xs mb-5">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -22,7 +20,7 @@ export const StatsBanner: React.FC<StatsBannerProps> = ({ issues }) => {
             Campus Issue Observatory
           </h2>
           <p className="text-xs text-stone-500 mt-0.5">
-            Real-time public grievance log monitored by student representatives & university administration.
+            Campus issue feed with browser-local demo data. Votes and comments are not verified student identities or shared live.
           </p>
         </div>
 

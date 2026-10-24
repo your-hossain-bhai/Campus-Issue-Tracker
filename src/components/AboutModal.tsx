@@ -47,7 +47,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
                 About CampusPulse
               </h2>
               <p className="text-xs text-orange-100">
-                Community Grievance & Real-Time Campus Resolution Hub
+                Events, clubs, opportunities & campus issues
               </p>
             </div>
           </div>
@@ -68,7 +68,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               What is CampusPulse?
             </h3>
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-              <strong>CampusPulse</strong> is a transparent, student-led issue tracking platform designed to bridge everyday campus challenges—such as bus shortages, library timings, cafeteria food hygiene, and lab equipment—with student representatives and university authorities.
+              <strong>CampusPulse</strong> helps students discover campus events and clubs, keep up with sample opportunities, and report and follow practical campus issues.
             </p>
           </div>
 
@@ -79,10 +79,10 @@ export const AboutModal: React.FC<AboutModalProps> = ({
                 <Vote className="w-4 h-4" />
               </div>
               <h4 className="text-xs font-bold text-stone-900">
-                1. Democratic Upvoting
+                1. Events & Communities
               </h4>
               <p className="text-[11px] text-stone-500 leading-relaxed">
-                Students upvote pressing grievances. Higher upvoted issues gain visibility for student unions and university officials.
+                Browse sample events and clubs, save activities, and mark yourself Interested or Going on this browser.
               </p>
             </div>
 
@@ -91,10 +91,10 @@ export const AboutModal: React.FC<AboutModalProps> = ({
                 <ShieldCheck className="w-4 h-4" />
               </div>
               <h4 className="text-xs font-bold text-stone-900">
-                2. Anonymous or Verified
+                2. Campus Issue Tracking
               </h4>
               <p className="text-[11px] text-stone-500 leading-relaxed">
-                Submit problems either with your Student ID or anonymously to protect whistleblower privacy without fear of backlash.
+                Report campus concerns, discuss updates, and follow issue statuses using the existing tracker.
               </p>
             </div>
 
@@ -103,10 +103,10 @@ export const AboutModal: React.FC<AboutModalProps> = ({
                 <Sparkles className="w-4 h-4" />
               </div>
               <h4 className="text-xs font-bold text-stone-900">
-                3. AI Intelligence Briefing
+                3. AI Issue Summary
               </h4>
               <p className="text-[11px] text-stone-500 leading-relaxed">
-                Our smart AI engine analyzes issue descriptions and photos to synthesize 1-sentence Bangla briefs (Main Demand, Status, and Next Steps).
+                A server-side Google GenAI key enables Bangla summaries; a clearly labeled demo fallback is available without a key.
               </p>
             </div>
 
@@ -115,10 +115,10 @@ export const AboutModal: React.FC<AboutModalProps> = ({
                 <CheckCircle2 className="w-4 h-4" />
               </div>
               <h4 className="text-xs font-bold text-stone-900">
-                4. Real-time Status Tracker
+                4. Browser-local demo
               </h4>
               <p className="text-[11px] text-stone-500 leading-relaxed">
-                Issues move dynamically from <strong>Pending Review</strong> to <strong>Resolved</strong> once campus administration delivers solutions.
+                Local votes, RSVPs, and submissions are not shared, verified, or synchronized across devices.
               </p>
             </div>
           </div>
@@ -130,10 +130,10 @@ export const AboutModal: React.FC<AboutModalProps> = ({
               How to Use CampusPulse:
             </h4>
             <ul className="text-xs text-orange-950 space-y-1.5 list-disc pl-4">
-              <li><strong>Browse & Filter:</strong> Search keywords (e.g. bus, library, wifi) or select sectors like Transport, Cafeteria, or Library.</li>
-              <li><strong>Upvote:</strong> Click the upvote chevron on any issue to increase its priority.</li>
-              <li><strong>Inspect & Summarize:</strong> Click any card to read full accounts, examine photos, and generate AI executive summaries.</li>
-              <li><strong>Submit a Report:</strong> Click "+ New Issue" to post a problem with optional photo evidence.</li>
+              <li><strong>Discover:</strong> Search events and clubs by topic, category, status, or date.</li>
+              <li><strong>Plan:</strong> Save events, update your local RSVP, share an event, or download a calendar file.</li>
+              <li><strong>Take part:</strong> Submit an event suggestion for a clearly labeled demo review flow.</li>
+              <li><strong>Improve campus:</strong> Use Campus Issues to report a concern and follow community discussion.</li>
             </ul>
           </div>
         </div>
@@ -153,7 +153,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({
             }}
             className="px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold shadow-md shadow-orange-600/20 transition-all flex items-center gap-1.5 cursor-pointer"
           >
-            <span>Report an Issue</span>
+            <span>Report a Campus Issue</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>

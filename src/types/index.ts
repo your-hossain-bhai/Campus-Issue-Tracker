@@ -6,6 +6,12 @@ export type IssueCategory =
   | 'Cafeteria'
   | 'Academics'
   | 'Facilities'
+  | 'Facilities & maintenance'
+  | 'Internet & technology'
+  | 'Academic services'
+  | 'Safety & accessibility'
+  | 'Student services'
+  | 'Other campus concerns'
   | 'Administration'
   | 'Student Life';
 

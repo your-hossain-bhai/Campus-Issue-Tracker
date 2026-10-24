@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { Suspense, lazy, useState, useEffect, useMemo } from 'react';
 import {
   Sparkles,
   Inbox,
@@ -7,18 +7,24 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { Header } from './components/Header';
-import { Sidebar } from './components/Sidebar';
 import { StatsBanner } from './components/StatsBanner';
 import { IssueCard } from './components/IssueCard';
 import { CreateIssueModal } from './components/CreateIssueModal';
 import { IssueDetailModal } from './components/IssueDetailModal';
 import { AboutModal } from './components/AboutModal';
+import { CampusPulseHub } from './components/CampusPulseHub';
 import { INITIAL_CAMPUS_ISSUES } from './data/mockIssues';
 import { CampusIssue, IssueCategory, IssueStatus, SortOption, IssueComment } from './types';
+import { CampusSection } from './types/campus';
 
 const STORAGE_KEY = 'campus_issues_data_v1';
+const MY_ISSUES_KEY = 'campuspulse_my_issues_v1';
+const Sidebar = lazy(() =>
+  import('./components/Sidebar').then((module) => ({ default: module.Sidebar }))
+);
 
 export default function App() {
+  const [section, setSection] = useState<CampusSection>('home');
   // 1. Core State with LocalStorage Persistence
   const [issues, setIssues] = useState<CampusIssue[]>(() => {
     try {
@@ -35,6 +41,16 @@ export default function App() {
       console.warn('Could not read from localStorage:', err);
     }
     return INITIAL_CAMPUS_ISSUES;
+  });
+  const [myIssueIds, setMyIssueIds] = useState<string[]>(() => {
+    try {
+      const saved = localStorage.getItem(MY_ISSUES_KEY);
+      const parsed: unknown = saved ? JSON.parse(saved) : [];
+      return Array.isArray(parsed) && parsed.every((id) => typeof id === 'string') ? parsed : [];
+    } catch (err) {
+      console.warn('Could not read submitted issue list from localStorage:', err);
+      return [];
+    }
   });
 
   // Filters and UI state
@@ -58,6 +74,21 @@ export default function App() {
     } catch (err) {
       console.warn('Could not write to localStorage:', err);
     }
+  }, [issues]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(MY_ISSUES_KEY, JSON.stringify(myIssueIds));
+    } catch (err) {
+      console.warn('Could not save submitted issue list to localStorage:', err);
+    }
+  }, [myIssueIds]);
+
+  useEffect(() => {
+    const issueId = window.location.hash.slice(1);
+    if (!issueId.startsWith('issue-')) return;
+    const issue = issues.find((item) => item.id === issueId);
+    if (issue) setSelectedIssue(issue);
   }, [issues]);
 
   const showToast = (message: string) => {
@@ -113,6 +144,7 @@ export default function App() {
     };
 
     setIssues((prev) => [newEntry, ...prev]);
+    setMyIssueIds((prev) => [newEntry.id, ...prev]);
     showToast('Campus issue published successfully!');
   };
 
@@ -248,6 +280,8 @@ export default function App() {
     <div className="min-h-screen bg-stone-100 text-stone-900 flex flex-col font-sans">
       {/* Top Sticky Header */}
       <Header
+        activeSection={section}
+        onSectionChange={setSection}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         selectedStatus={selectedStatus}
@@ -261,7 +295,16 @@ export default function App() {
       />
 
       {/* Main Content Layout */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
+      {section !== 'issues' ? (
+        <CampusPulseHub
+          section={section}
+          onNavigate={setSection}
+          issues={issues}
+          myIssueIds={myIssueIds}
+          onSelectIssue={setSelectedIssue}
+          onReportIssue={() => setIsCreateModalOpen(true)}
+        />
+      ) : <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
         <StatsBanner issues={issues} />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
@@ -357,23 +400,25 @@ export default function App() {
           {/* Right Sidebar Column */}
           <div className="lg:col-span-4">
             <div className="sticky top-28">
-              <Sidebar
-                issues={issues}
-                selectedCategory={selectedCategory}
-                onSelectCategory={setSelectedCategory}
-                onOpenCreateModal={() => setIsCreateModalOpen(true)}
-                onSelectIssue={(item) => setSelectedIssue(item)}
-              />
+              <Suspense fallback={<div role="status" className="rounded-xl bg-white p-4 text-xs text-stone-500">Loading issue tools…</div>}>
+                <Sidebar
+                  issues={issues}
+                  selectedCategory={selectedCategory}
+                  onSelectCategory={setSelectedCategory}
+                  onOpenCreateModal={() => setIsCreateModalOpen(true)}
+                  onSelectIssue={(item) => setSelectedIssue(item)}
+                />
+              </Suspense>
             </div>
           </div>
         </div>
-      </main>
+      </main>}
 
       {/* Footer */}
       <footer className="mt-12 py-6 border-t border-stone-200 bg-white text-xs text-stone-500">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div>
-            <span className="font-bold text-stone-800">CampusPulse</span> • Democratic Campus Grievance & Resolution Platform
+            <span className="font-bold text-stone-800">CampusPulse</span> • One platform for campus life
           </div>
           <div className="flex items-center gap-3 text-stone-400">
             <button
@@ -384,7 +429,7 @@ export default function App() {
             </button>
             <span>•</span>
             <span className="text-orange-600 font-semibold flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5" /> AI Issue Intelligence
+              <Sparkles className="w-3.5 h-3.5" /> AI Issue Summaries
             </span>
           </div>
         </div>

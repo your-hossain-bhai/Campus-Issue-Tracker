@@ -1,6 +1,6 @@
 {
-  "name": "Campus Issue Tracker",
-  "description": "A Reddit-style university campus issue tracker with AI intelligence briefing, real-time upvoting, community reports, and Bangla executive summary extraction.",
+  "name": "CampusPulse",
+  "description": "Discover campus events and clubs, explore student opportunities, and report and track campus issues.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
