@@ -1,0 +1,6 @@
+{
+  "name": "Campus Issue Tracker",
+  "description": "A Reddit-style university campus issue tracker with AI intelligence briefing, real-time upvoting, community reports, and Bangla executive summary extraction.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
